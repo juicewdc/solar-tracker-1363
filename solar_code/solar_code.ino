@@ -32,24 +32,28 @@ void loop() {
   int rd = analogRead(RD);
 
   if ((lu <= error) && (ld <= error) && (ru <= error) && (rd <= error)) {
+    // Do nothing
   } else {
-    if ((ld != lu) || (rd != ru) || (ru != lu) || (rd != ld)) {
-      if (lu > ld) {
-        Spoint180 = --Spoint180;
-      }
-      if (lu < ld) {
-        Spoint180 = ++Spoint180;
-      }
-      if (rd < ru) {
-        Spoint180 = ++Spoint180;
-      }
-      servo180.write(Spoint180);
-    } else {
-      Spoint360 = ++Spoint360;
-      servo360.write(Spoint360);
+    if (lu > ld) {
+      Spoint180 = --Spoint180;
     }
+    if (lu < ld) {
+      Spoint180 = ++Spoint180;
+    }
+    if (rd < ru) {
+      Spoint180 = ++Spoint180;
+    }
+    servo180.write(Spoint180);
+  }
+  
+  if ((lu <= error) && (ld <= error) && (ru <= error) && (rd <= error)) {
+
+  } else {
+    Spoint360 = ++Spoint360;
+    servo360.write(Spoint360);
   }
 
   delay(80);
 }
+
 
