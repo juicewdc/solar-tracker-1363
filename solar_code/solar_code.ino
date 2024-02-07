@@ -4,7 +4,7 @@
 #define LD A1
 #define RU A2
 #define RD A3
-#define error 10
+#define error 160
 
 int Spoint180 = 10;
 int Spoint360 = 10;
@@ -31,25 +31,32 @@ void loop() {
   int ru = analogRead(RU);
   int rd = analogRead(RD);
 
+  int d = rd + ld;
+  int r = ru + rd;
+  int u = ru + lu;
+  int l = ld + lu;
+
   if ((lu <= error) && (ld <= error) && (ru <= error) && (rd <= error)) {
     // Do nothing
   } else {
-    if (lu > ld) {
-      Spoint180 = --Spoint180;
+    if (d > 100) {
+      Spoint180--;
     }
-    if (lu < ld) {
-      Spoint180 = ++Spoint180;
-    }
-    if (rd < ru) {
-      Spoint180 = ++Spoint180;
+    if (u > 100) {
+      Spoint180++;
     }
     servo180.write(Spoint180);
   }
-  
-  if ((lu <= error) && (ld <= error) && (ru <= error) && (rd <= error)) {
 
+  if ((lu <= error) && (ld <= error) && (ru <= error) && (rd <= error)) {
+    // Do nothing
   } else {
-    Spoint360 = ++Spoint360;
+    if (l > 100) {
+      Spoint360++;
+    }
+    if (r > 100) {
+      Spoint360--;
+    }
     servo360.write(Spoint360);
   }
 
