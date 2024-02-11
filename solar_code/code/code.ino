@@ -4,7 +4,7 @@
 #define LD A1
 #define RU A2
 #define RD A3
-#define error 200
+#define error 70
 
 int Spoint180 = 10;
 int Spoint360 = 50;
@@ -42,10 +42,10 @@ void loop() {
   if ((lu <= error) && (ld <= error) && (ru <= error) && (rd <= error)) {
     // Do nothing
   } else {
-    if (d > 10) {
+    if (d > 600) {
     servo180.write(90)  ;
     }
-    if (u > 10) {
+    if (u > 600) {
       servo180.write(180);
     }
   }
@@ -53,10 +53,10 @@ void loop() {
   if ((lu <= error) && (ld <= error) && (ru <= error) && (rd <= error)) {
     // Do nothing
   } else {
-    if (r > 100) {
+    if (r > 600) {
       servo360.write(0);
     }
-    if (l > 100) {
+    if (l > 600) {
       servo360.write(180);
     } else {
       servo360.write(90);
